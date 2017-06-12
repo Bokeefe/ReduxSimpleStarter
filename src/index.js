@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
-import VideoDetail from './components/video_detail'
+import VideoDetail from './components/video_detail';
 
 const API_KEY= 'AIzaSyCUi9IG66fxkskdHFlDaxTNBsxDw-XTSN8';
 
@@ -24,11 +24,15 @@ class App extends Component {
     });
   }
   render(){
-    return <div>
+    return (
+    <div>
       <SearchBar />
-      <VideoDetail video={this.state.selectedVideo}/>
-      <VideoList videos={this.state.videos}/>
-    </div>;
+      <VideoDetail video={this.state.selectedVideo} />
+      <VideoList 
+        onVideoSelect={selectedVideo=> this.setState({selectedVideo})}
+        videos={this.state.videos}/>
+    </div>
+    );
   }
 }
 
